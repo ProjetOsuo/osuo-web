@@ -34,8 +34,28 @@
 
   <title>Osuo</title>
   <link rel="manifest" href="manifest.json">
+  <!--
+    Flutter web leaves the iPhone safe areas to the page: the app lives in
+    #osuo-app, kept clear of the notch, the home bar and Safari's toolbar.
+  -->
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #8566FF;
+    }
+    #osuo-app {
+      position: fixed;
+      top: env(safe-area-inset-top, 0px);
+      right: env(safe-area-inset-right, 0px);
+      bottom: env(safe-area-inset-bottom, 0px);
+      left: env(safe-area-inset-left, 0px);
+    }
+  </style>
 </head>
-<body style="background:#8566FF">
+<body>
+  <div id="osuo-app"></div>
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader
