@@ -46,7 +46,7 @@ _flutter.buildConfig = {"engineRevision":"89c39edfdfae2949f6806e4a315c0c08522238
 // inside #osuo-app, which index.html insets by env(safe-area-inset-*).
 _flutter.loader.load({
   serviceWorkerSettings: {
-    serviceWorkerVersion: "19416015" /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */,
+    serviceWorkerVersion: "686764860" /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */,
   },
   onEntrypointLoaded: async function (engineInitializer) {
     const appRunner = await engineInitializer.initializeEngine({
