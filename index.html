@@ -64,6 +64,33 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <!--
+    iPhone keyboard (porteur, 2026-11-25): Safari does not shrink the page
+    when the keyboard opens, and Flutter web never learns its height: the
+    bottom of the app (a sheet, a field) stayed under it. #osuo-app is fitted
+    to the visible part above the keyboard; Flutter then lays out in it and
+    the field being typed scrolls into view.
+  -->
+  <script>
+    (function () {
+      var vv = window.visualViewport;
+      if (!vv) return;
+      var app = document.getElementById('osuo-app');
+      function fit() {
+        var keyboard = window.innerHeight - vv.height - vv.offsetTop;
+        if (keyboard > 80) {
+          app.style.top =
+            'calc(env(safe-area-inset-top, 0px) + ' + vv.offsetTop + 'px)';
+          app.style.bottom = keyboard + 'px';
+        } else {
+          app.style.top = '';
+          app.style.bottom = '';
+        }
+      }
+      vv.addEventListener('resize', fit);
+      vv.addEventListener('scroll', fit);
+    })();
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
